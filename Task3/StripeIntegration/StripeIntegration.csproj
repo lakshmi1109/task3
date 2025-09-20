@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	  <UserSecretsId>1ff20d4f-58af-47c2-9c21-c1363972706d</UserSecretsId>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<!-- This is the crucial line that adds the Stripe library to your project -->
+		<PackageReference Include="Stripe.net" Version="44.1.0" />
+	</ItemGroup>
+
+</Project>
+

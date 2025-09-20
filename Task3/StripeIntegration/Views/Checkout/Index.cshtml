@@ -1,0 +1,46 @@
+﻿@model StripeIntegration.Models.CheckoutViewModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Checkout</h3>
+                </div>
+                <div class="card-body p-4">
+                    <h4 class="card-title">@Model.ProductName</h4>
+                    <p class="card-text">@Model.ProductDescription</p>
+                    <hr />
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-0 h5">Total Price:</p>
+                        <!-- Displaying price by converting from smallest unit -->
+                        <p class="mb-0 h5">@((Model.ProductPrice / 100.0).ToString("C", new System.Globalization.CultureInfo(Model.ProductCurrency == "inr" ? "en-IN" : "en-US")))</p>
+                    </div>
+                    <hr />
+
+                    <!-- The form that will redirect to Stripe -->
+                    <form asp-action="CreateCheckoutSession" method="POST">
+                        <input type="hidden" asp-for="ProductName" />
+                        <input type="hidden" asp-for="ProductPrice" />
+                        <input type="hidden" asp-for="ProductCurrency" />
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fab fa-stripe"></i> Pay with Stripe
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Font Awesome for the Stripe icon -->
+@section Scripts {
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <!-- Replace with your Font Awesome kit URL or remove if not needed -->
+}
